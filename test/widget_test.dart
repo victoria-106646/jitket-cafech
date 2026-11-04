@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:lab3_selab/main.dart';
 
 void main() {
-  testWidgets('Jitket Cafech app loads successfully',
-      (WidgetTester tester) async {
+  testWidgets('Jitket Cafech app loads successfully', (
+    WidgetTester tester,
+  ) async {
     // Launch the café application.
     await tester.pumpWidget(const JitketCafechApp());
 
