@@ -37,7 +37,8 @@ class CafeItem {
 const List<CafeItem> cafeMenu = [
   CafeItem(
     name: 'Iced Latte',
-    description: 'Smooth espresso blended with chilled milk and served over ice.',
+    description:
+        'Smooth espresso blended with chilled milk and served over ice.',
     price: 8.00,
     category: 'COFFEE',
     imageUrl:
@@ -51,19 +52,18 @@ const List<CafeItem> cafeMenu = [
     description: 'Smooth Japanese matcha with creamy milk.',
     price: 12.00,
     category: 'MATCHA',
-    imageUrl:
-        'https://images.unsplash.com/photo-1515823064-d6e0c04616a7?w=400',
+    imageUrl: 'https://images.unsplash.com/photo-1515823064-d6e0c04616a7?w=400',
     background: Color(0xFFDDE8D5),
     badge: 'POPULAR',
     fallbackIcon: Icons.local_cafe,
   ),
   CafeItem(
     name: 'Iced Lemon Tea',
-    description: 'Refreshing black tea with fresh lemon, served chilled over ice.',
+    description:
+        'Refreshing black tea with fresh lemon, served chilled over ice.',
     price: 11.00,
     category: 'SPECIALS',
-    imageUrl:
-        'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400',
+    imageUrl: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400',
     background: Color(0xFFF5DCE0),
     badge: 'CUSTOMER FAVOURITE',
     fallbackIcon: Icons.local_drink,
@@ -140,9 +140,7 @@ class _MenuPageState extends State<MenuPage> {
       return cafeMenu;
     }
 
-    return cafeMenu
-        .where((item) => item.category == selectedCategory)
-        .toList();
+    return cafeMenu.where((item) => item.category == selectedCategory).toList();
   }
 
   void addToCart(CafeItem item) {
@@ -179,9 +177,7 @@ class _MenuPageState extends State<MenuPage> {
       isScrollControlled: true,
       backgroundColor: cafeCream,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(26),
-        ),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(26)),
       ),
       builder: (sheetContext) {
         return StatefulBuilder(
@@ -226,9 +222,7 @@ class _MenuPageState extends State<MenuPage> {
                               SizedBox(height: 12),
                               Text(
                                 'Your order is empty!',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                               Text('Add something delicious to begin.'),
                             ],
@@ -238,15 +232,12 @@ class _MenuPageState extends State<MenuPage> {
                     else ...[
                       ConstrainedBox(
                         constraints: BoxConstraints(
-                          maxHeight:
-                              MediaQuery.of(context).size.height * 0.35,
+                          maxHeight: MediaQuery.of(context).size.height * 0.35,
                         ),
                         child: SingleChildScrollView(
                           child: Column(
                             children: cafeMenu
-                                .where(
-                                  (item) => (cart[item.name] ?? 0) > 0,
-                                )
+                                .where((item) => (cart[item.name] ?? 0) > 0)
                                 .map(
                                   (item) => ListTile(
                                     contentPadding: EdgeInsets.zero,
@@ -412,11 +403,7 @@ class _MenuPageState extends State<MenuPage> {
                 color: lightBrown,
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: const Icon(
-                Icons.coffee,
-                size: 27,
-                color: cafeBrown,
-              ),
+              child: const Icon(Icons.coffee, size: 27, color: cafeBrown),
             ),
             const SizedBox(width: 10),
             const Column(
@@ -451,10 +438,7 @@ class _MenuPageState extends State<MenuPage> {
                 IconButton(
                   onPressed: showCart,
                   tooltip: 'View order',
-                  icon: const Icon(
-                    Icons.shopping_bag_outlined,
-                    size: 27,
-                  ),
+                  icon: const Icon(Icons.shopping_bag_outlined, size: 27),
                 ),
                 if (totalItems > 0)
                   Positioned(
@@ -532,10 +516,7 @@ class _MenuPageState extends State<MenuPage> {
                           const SizedBox(height: 10),
                           const Text(
                             'Good drinks, better moods.',
-                            style: TextStyle(
-                              fontSize: 13,
-                              color: darkBrown,
-                            ),
+                            style: TextStyle(fontSize: 13, color: darkBrown),
                           ),
                           const SizedBox(height: 16),
                           FilledButton(
@@ -554,11 +535,7 @@ class _MenuPageState extends State<MenuPage> {
                       ),
                     ),
                     const SizedBox(width: 6),
-                    const Icon(
-                      Icons.local_cafe,
-                      size: 105,
-                      color: cafeBrown,
-                    ),
+                    const Icon(Icons.local_cafe, size: 105, color: cafeBrown),
                   ],
                 ),
               ),
@@ -577,10 +554,7 @@ class _MenuPageState extends State<MenuPage> {
               const SizedBox(height: 6),
               const Text(
                 'Find your favourite drink and treat.',
-                style: TextStyle(
-                  color: Colors.black54,
-                  fontSize: 14,
-                ),
+                style: TextStyle(color: Colors.black54, fontSize: 14),
               ),
 
               const SizedBox(height: 18),
@@ -590,39 +564,35 @@ class _MenuPageState extends State<MenuPage> {
                 height: 42,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
-                  children: [
-                    'ALL',
-                    'COFFEE',
-                    'MATCHA',
-                    'SPECIALS',
-                    'DESSERTS',
-                  ].map((category) {
-                    final isSelected = selectedCategory == category;
+                  children: ['ALL', 'COFFEE', 'MATCHA', 'SPECIALS', 'DESSERTS']
+                      .map((category) {
+                        final isSelected = selectedCategory == category;
 
-                    return Padding(
-                      padding: const EdgeInsets.only(right: 8),
-                      child: ChoiceChip(
-                        label: Text(
-                          category == 'ALL' ? 'All Items' : category,
-                        ),
-                        selected: isSelected,
-                        onSelected: (_) {
-                          setState(() {
-                            selectedCategory = category;
-                          });
-                        },
-                        selectedColor: lightBrown,
-                        backgroundColor: Colors.white,
-                        labelStyle: TextStyle(
-                          color: darkBrown,
-                          fontWeight: isSelected
-                              ? FontWeight.bold
-                              : FontWeight.normal,
-                        ),
-                        side: BorderSide.none,
-                      ),
-                    );
-                  }).toList(),
+                        return Padding(
+                          padding: const EdgeInsets.only(right: 8),
+                          child: ChoiceChip(
+                            label: Text(
+                              category == 'ALL' ? 'All Items' : category,
+                            ),
+                            selected: isSelected,
+                            onSelected: (_) {
+                              setState(() {
+                                selectedCategory = category;
+                              });
+                            },
+                            selectedColor: lightBrown,
+                            backgroundColor: Colors.white,
+                            labelStyle: TextStyle(
+                              color: darkBrown,
+                              fontWeight: isSelected
+                                  ? FontWeight.bold
+                                  : FontWeight.normal,
+                            ),
+                            side: BorderSide.none,
+                          ),
+                        );
+                      })
+                      .toList(),
                 ),
               ),
 
@@ -637,11 +607,7 @@ class _MenuPageState extends State<MenuPage> {
               Center(
                 child: Column(
                   children: [
-                    const Icon(
-                      Icons.favorite,
-                      color: cafeGreen,
-                      size: 28,
-                    ),
+                    const Icon(Icons.favorite, color: cafeGreen, size: 28),
                     const SizedBox(height: 8),
                     const Text(
                       'SIP, SMILE, REPEAT',
@@ -655,10 +621,7 @@ class _MenuPageState extends State<MenuPage> {
                     const SizedBox(height: 5),
                     const Text(
                       'Made with love at Jitket Cafech.',
-                      style: TextStyle(
-                        color: Colors.black45,
-                        fontSize: 12,
-                      ),
+                      style: TextStyle(color: Colors.black45, fontSize: 12),
                     ),
                   ],
                 ),
@@ -702,11 +665,7 @@ class _MenuPageState extends State<MenuPage> {
                   item.imageUrl,
                   fit: BoxFit.cover,
                   errorBuilder: (context, error, stackTrace) {
-                    return Icon(
-                      item.fallbackIcon,
-                      size: 48,
-                      color: cafeBrown,
-                    );
+                    return Icon(item.fallbackIcon, size: 48, color: cafeBrown);
                   },
                 ),
               ),
